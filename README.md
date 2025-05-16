@@ -1,7 +1,7 @@
 # <div align="center">🕉️ त्रिमूर्ति CTF Challenge 🕉️</div>
 
 <div align="center">
-  <img src="https://i.gifer.com/7VE.gif" width="150" alt="Om Animation">
+  <img src="https://i.gifer.com/SAY8.gif" width="150" alt="Om Animation">
 </div>
 
 **<div align="center">"ज्ञानं परमं बलम्"** *(Knowledge is the ultimate power)*</div>
@@ -9,7 +9,7 @@
 ## 🌟 Introduction
 <div style="background: linear-gradient(to right, #ff6b00, #9c27b0); padding: 1rem; border-radius: 8px; color: white; animation: pulse 2s infinite;">
 Embark on a divine journey through Hindu mythology to uncover hidden secrets! This **Trimurti-themed CTF challenge** tests your wisdom through cryptographic puzzles guarded by **Brahma, Vishnu, and Shiva**.
-</div>
+
 
 <style>
 @keyframes pulse {
@@ -28,6 +28,7 @@ Embark on a divine journey through Hindu mythology to uncover hidden secrets! Th
   100% { opacity: 0.8; }
 }
 </style>
+</div>
 
 ## 📜 Divine Prologue
 > <div style="font-family: 'Times New Roman', serif; font-size: 1.2em; animation: float 4s ease-in-out infinite; color: #ffd700;">
