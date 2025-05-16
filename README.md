@@ -9,26 +9,10 @@
 ## 🌟 Introduction
 <div style="background: linear-gradient(to right, #ff6b00, #9c27b0); padding: 1rem; border-radius: 8px; color: white; animation: pulse 2s infinite;">
 Embark on a divine journey through Hindu mythology to uncover hidden secrets! This **Trimurti-themed CTF challenge** tests your wisdom through cryptographic puzzles guarded by **Brahma, Vishnu, and Shiva**.
-
-
-<style>
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.01); }
-  100% { transform: scale(1); }
-}
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-@keyframes flicker {
-  0% { opacity: 0.8; }
-  50% { opacity: 1; }
-  100% { opacity: 0.8; }
-}
-</style>
 </div>
+
+
+
 
 ## 📜 Divine Prologue
 > <div style="font-family: 'Times New Roman', serif; font-size: 1.2em; animation: float 4s ease-in-out infinite; color: #ffd700;">
