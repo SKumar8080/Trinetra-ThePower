@@ -1,6 +1,4 @@
-Here's an enhanced `README.md` with animated mythological elements using GitHub Flavored Markdown and HTML/CSS (works on GitHub and other platforms that support HTML in Markdown):
 
-```markdown
 # <div align="center">🕉️ त्रिमूर्ति CTF Challenge 🕉️</div>
 
 <div align="center">
