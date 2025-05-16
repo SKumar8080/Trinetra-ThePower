@@ -34,24 +34,7 @@ Embark on a divine journey through Hindu mythology to uncover hidden secrets! Th
    - Face divine wrath for failure <span style="color: #e53935;">(beware of Asuras!)</span> <img src="https://i.gifer.com/embedded/download/3og0.gif" width="20" style="vertical-align: middle;">
 </div>
 
-## 🌌 Features
-<div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0;">
-  <div style="background: rgba(255,107,0,0.1); padding: 1rem; border-radius: 8px; border: 1px solid #ff6b00; width: 200px; text-align: center; animation: flicker 3s infinite;">
-    <img src="https://i.gifer.com/7VE.gif" width="80"><br>
-    <strong>Mythological Animations</strong><br>
-    <small>Brahma's Creation</small>
-  </div>
-  <div style="background: rgba(76,175,80,0.1); padding: 1rem; border-radius: 8px; border: 1px solid #4caf50; width: 200px; text-align: center; animation: flicker 3s infinite; animation-delay: 0.5s;">
-    <img src="https://i.gifer.com/W7lt.gif" width="80"><br>
-    <strong>Interactive Console</strong><br>
-    <small>Vishnu's Protection</small>
-  </div>
-  <div style="background: rgba(156,39,176,0.1); padding: 1rem; border-radius: 8px; border: 1px solid #9c27b0; width: 200px; text-align: center; animation: flicker 3s infinite; animation-delay: 1s;">
-    <img src="https://i.gifer.com/3z6Z.gif" width="80"><br>
-    <strong>Hidden Secrets</strong><br>
-    <small>Shiva's Transformation</small>
-  </div>
-</div>
+
 
 ## 🧘 Motivational Shlokas
 <div style="background: #0f0f0f; padding: 2rem; border-radius: 8px; color: white; border: 1px solid #ff6b00; position: relative; overflow: hidden;">
