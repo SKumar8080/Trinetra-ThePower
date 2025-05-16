@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>त्रिमूर्ति CTF | Hindu Mythology Challenge</title>
+    <style>
+        :root {
+            --primary: #ff6b00;
+            --secondary: #9c27b0;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f0f0f0;
+            --asura: #e53935;
+            --deva: #4caf50;
+            --transition: all 0.5s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(156, 39, 176, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes flash {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Navbar */
+        nav {
+            background-color: rgba(18, 18, 18, 0.9);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--primary);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 2s ease;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+            padding: 2rem;
+            animation: fadeIn 1s ease;
+        }
+
+        /* Home page */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .deities {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .deity-card {
+            background-color: var(--darker);
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 280px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .deity-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .deity-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.5));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .deity-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .deity-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Challenges page */
+        .challenges-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .challenge {
+            background-color: var(--darker);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .challenge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .challenge h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .clue-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .clue-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .clue-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .clue-input button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .clue-input button:hover {
+            background-color: #e65100;
+        }
+
+        .hint {
+            background-color: rgba(156, 39, 176, 0.1);
+            border-left: 3px solid var(--secondary);
+            padding: 0.8rem;
+            margin-top: 1rem;
+            border-radius: 0 5px 5px 0;
+            display: none;
+        }
+
+        .hint-btn {
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* About page */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--darker);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--darker);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(255, 107, 0, 0.3);
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Jumpscare */
+        .jumpscare {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s;
+        }
+
+        .jumpscare img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Hidden elements */
+        .hidden-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--darker);
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(156, 39, 176, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            max-width: 300px;
+        }
+
+        .hidden-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .deities {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+/* Console Page Styles */
+    .console-container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .console {
+        background-color: var(--darker);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        margin-top: 2rem;
+        text-align: left;
+    }
+
+    .console-header {
+        background-color: #333;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #222;
+    }
+
+    .console-dots {
+        display: flex;
+        gap: 6px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .red { background-color: #ff5f56; }
+    .yellow { background-color: #ffbd2e; }
+    .green { background-color: #27c93f; }
+
+    .console-title {
+        margin-left: 1rem;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    .console-body {
+        padding: 1.5rem;
+        font-family: 'Courier New', monospace;
+    }
+
+    .console-output {
+        height: 200px;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+        color: #0f0;
+        line-height: 1.5;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 1rem;
+        border-radius: 4px;
+        border: 1px solid #333;
+    }
+
+    .console-input {
+        display: flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: 1px solid #333;
+    }
+
+    .console-input span {
+        color: #0f0;
+        margin-right: 0.5rem;
+    }
+
+    .console-input input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .console-input input:focus {
+        outline: none;
+    }
+
+    .console-input button {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        transition: var(--transition);
+    }
+
+    .console-input button:hover {
+        background-color: #e65100;
+    }
+
+    /* Success Modal */
+    .success-modal {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .celebration {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .firework {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
+        animation: fireworks 2s ease-out infinite;
+        opacity: 0;
+    }
+
+    .firework:nth-child(1) {
+        top: 20%;
+        left: 20%;
+        animation-delay: 0.5s;
+    }
+
+    .firework:nth-child(2) {
+        top: 60%;
+        left: 70%;
+        animation-delay: 1s;
+    }
+
+    .firework:nth-child(3) {
+        top: 30%;
+        left: 50%;
+        animation-delay: 1.5s;
+    }
+
+    .mantra {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+        color: gold;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        animation: pulse 2s infinite;
+    }
+
+    /* Failure Modal */
+    .failure-modal {
+        background: linear-gradient(135deg, #200122, #6f0000);
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+
+    .asura {
+        position: relative;
+        height: 100px;
+        margin: 1rem auto;
+    }
+
+    .asura-eye {
+        position: absolute;
+        width: 30px;
+        height: 50px;
+        background-color: #ff0000;
+        border-radius: 50%;
+        top: 25px;
+        box-shadow: 0 0 20px #ff0000;
+        animation: asuraBlink 4s infinite;
+    }
+
+    .asura-eye:nth-child(1) {
+        left: calc(50% - 40px);
+    }
+
+    .asura-eye:nth-child(2) {
+        right: calc(50% - 40px);
+    }
+
+    .hint {
+        color: #ff6b00;
+        font-weight: bold;
+        margin: 1rem 0;
+    }
+
+    /* Animations */
+    @keyframes fireworks {
+        0% { transform: translate(0, 0); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+    }
+
+    @keyframes asuraBlink {
+        0%, 45%, 55%, 100% { height: 50px; }
+        50% { height: 5px; }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2YjAwIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMDEuOC0yNjEuN2wtODQuOS02MS43Yy0zLjEtMi4yLTcuMi0yLjItMTAuMyAwbC01NiA0MC43LTE1LjktMTEuNWMtMy4xLTIuMi03LjItMi4yLTEwLjMgMEwxMzEgMjQ3LjhjLTIuOSAyLjEtMy4yIDYuMS0uNyA4LjhsNDMuNSA0My4zYzEuNSAxLjUgMy42IDIuMyA1LjcgMi4zIDEuNyAwIDMuNC0uNSA0LjgtMS40bDE2LjYtMTJjMy4xLTIuMiAzLjctNi4yIDEuNS05LjNsLTE0LjUtMjAuMWMyLjEtMi45IDYuNi0zLjMgOS43LTEuMWwzMi4xIDIzLjMgMTA1LjEtNzYuMmMzLjEtMi4yIDMuNy02LjIgMS41LTkuM2wtMTkuOC0yNy43Yy0yLjItMy4xLTYuMi0zLjctOS4zLTEuNXoiLz48L3N2Zz4=" alt="Om Symbol">
+            <h1>त्रिमूर्ति CTF</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="showPage('home')">🏠 Home</a>
+            <a href="#" onclick="showPage('challenges')">🔐 Challenges</a>
+            <a href="#" onclick="showPage('about')">📜 About</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page">
+            <section class="hero">
+                <h2>Unlock the Secrets of the Trimurti</h2>
+                <p>Embark on a journey through Hindu mythology to uncover hidden flags by solving cryptographic challenges. Each deity holds a piece of the puzzle.</p>
+                <button class="cta-button" onclick="showPage('challenges')">Begin Challenge</button>
+                
+                <div class="deities">
+                    <div class="deity-card" onclick="showDeityModal('Brahma', 'The Creator', 'ॐ', 'Brahma represents the creative aspect of the universe. He is often depicted with four heads, symbolizing the four Vedas.')">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2YjAwIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMDEuOC0yNjEuN2wtODQuOS02MS43Yy0zLjEtMi4yLTcuMi0yLjItMTAuMyAwbC01NiA0MC43LTE1LjktMTEuNWMtMy4xLTIuMi03LjItMi4yLTEwLjMgMEwxMzEgMjQ3LjhjLTIuOSAyLjEtMy4yIDYuMS0uNyA4LjhsNDMuNSA0My4zYzEuNSAxLjUgMy42IDIuMyA1LjcgMi4zIDEuNyAwIDMuNC0uNSA0LjgtMS40bDE2LjYtMTJjMy4xLTIuMiAzLjctNi4yIDEuNS05LjNsLTE0LjUtMjAuMWMyLjEtMi45IDYuNi0zLjMgOS43LTEuMWwzMi4xIDIzLjMgMTA1LjEtNzYuMmMzLjEtMi4yIDMuNy02LjIgMS41LTkuM2wtMTkuOC0yNy43Yy0yLjItMy4xLTYuMi0zLjctOS4zLTEuNXoiLz48L3N2Zz4=" alt="Brahma">
+                        <h3>Brahma</h3>
+                        <p>The Creator</p>
+                    </div>
+                    <div class="deity-card" onclick="showDeityModal('Vishnu', 'The Preserver', '🕉️', 'Vishnu maintains the balance of the universe. He is often depicted resting on the serpent Shesha.')">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNGNhZjUwIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMDEuOC0yNjEuN2wtODQuOS02MS43Yy0zLjEtMi4yLTcuMi0yLjItMTAuMyAwbC01NiA0MC43LTE1LjktMTEuNWMtMy4xLTIuMi03LjItMi4yLTEwLjMgMEwxMzEgMjQ3LjhjLTIuOSAyLjEtMy4yIDYuMS0uNyA4LjhsNDMuNSA0My4zYzEuNSAxLjUgMy42IDIuMyA1LjcgMi4zIDEuNyAwIDMuNC0uNSA0LjgtMS40bDE2LjYtMTJjMy4xLTIuMiAzLjctNi4yIDEuNS05LjNsLTE0LjUtMjAuMWMyLjEtMi45IDYuNi0zLjMgOS43LTEuMWwzMi4xIDIzLjMgMTA1LjEtNzYuMmMzLjEtMi4yIDMuNy02LjIgMS41LTkuM2wtMTkuOC0yNy43Yy0yLjItMy4xLTYuMi0zLjctOS4zLTEuNXoiLz48L3N2Zz4=" alt="Vishnu">
+                        <h3>Vishnu</h3>
+                        <p>The Preserver</p>
+                    </div>
+                    <div class="deity-card" onclick="showDeityModal('Shiva', 'The Destroyer', '🔥', 'Shiva represents transformation and destruction necessary for recreation. He is often depicted with a third eye and a crescent moon.')">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZTUzOTM1IiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMDEuOC0yNjEuN2wtODQuOS02MS43Yy0zLjEtMi4yLTcuMi0yLjItMTAuMyAwbC01NiA0MC43LTE1LjktMTEuNWMtMy4xLTIuMi03LjItMi4yLTEwLjMgMEwxMzEgMjQ3LjhjLTIuOSAyLjEtMy4yIDYuMS0uNyA4LjhsNDMuNSA0My4zYzEuNSAxLjUgMy42IDIuMyA1LjcgMi4zIDEuNyAwIDMuNC0uNSA0LjgtMS40bDE2LjYtMTJjMy4xLTIuMiAzLjctNi4yIDEuNS05LjNsLTE0LjUtMjAuMWMyLjEtMi45IDYuNi0zLjMgOS43LTEuMWwzMi4xIDIzLjMgMTA1LjEtNzYuMmMzLjEtMi4yIDMuNy02LjIgMS41LTkuM2wtMTkuOC0yNy43Yy0yLjItMy4xLTYuMi0zLjctOS4zLTEuNXoiLz48L3N2Zz4=" alt="Shiva">
+                        <h3>Shiva</h3>
+                        <p>The Destroyer</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Challenges Page -->
+        <div id="challenges-page" class="page" style="display: none;">
+            <div class="challenges-container">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">त्रिमूर्ति Challenges</h2>
+                
+                <div class="challenge">
+                    <h3>🔮 Brahma's Creation</h3>
+                    <p>Brahma has hidden a clue in his sacred texts. Decode the following to find the first part of the flag:</p>
+                    <p><code>VGhlIGZpcnN0IHBhcnQgaXM6IEZsYWd7QnJhaG1hXzEwMDBfWWVhcnN9</code></p>
+                    <div class="clue-input">
+                        <input type="text" id="clue1-input" placeholder="Enter decoded clue...">
+                        <button onclick="checkClue(1)">Submit</button>
+                    </div>
+                    <button class="hint-btn" onclick="toggleHint(1)">💡 Show Hint</button>
+                    <div class="hint" id="hint1">
+                        <p>Brahma is associated with knowledge. This looks like base64 encoding.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge">
+                    <h3>🛡️ Vishnu's Protection</h3>
+                    <p>Vishnu has concealed the second clue within his avatars. Analyze the following cipher:</p>
+                    <p><code>Gur frpbaq cneg:_Ivfuah_10_Avtugf</code></p>
+                    <div class="clue-input">
+                        <input type="text" id="clue2-input" placeholder="Enter decoded clue...">
+                        <button onclick="checkClue(2)">Submit</button>
+                    </div>
+                    <button class="hint-btn" onclick="toggleHint(2)">💡 Show Hint</button>
+                    <div class="hint" id="hint2">
+                        <p>Vishnu preserves order. This cipher shifts letters by a fixed number.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge">
+                    <h3>🔥 Shiva's Transformation</h3>
+                    <p>Shiva has encoded the final clue in his cosmic dance. Decipher this hexadecimal message:</p>
+                    <p><code>54 68 65 20 74 68 69 72 64 20 70 61 72 74 20 69 73 3a 20 5f 4e 61 74 61 72 61 6a 7d</code></p>
+                    <div class="clue-input">
+                        <input type="text" id="clue3-input" placeholder="Enter decoded clue...">
+                        <button onclick="checkClue(3)">Submit</button>
+                    </div>
+                    <button class="hint-btn" onclick="toggleHint(3)">💡 Show Hint</button>
+                    <div class="hint" id="hint3">
+                        <p>Shiva transforms everything. Convert each pair of hex digits to ASCII characters.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge" id="final-flag-section" style="display: none;">
+                    <h3>🎉 The Complete Flag</h3>
+                    <p>Combine all three decoded parts in order to form the complete flag:</p>
+                    <div class="clue-input">
+                        <input type="text" id="final-flag-input" placeholder="Enter the complete flag...">
+                        <button onclick="checkFinalFlag()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div id="console-page" class="page" style="display: none;">
+    <div class="console-container">
+        <h2>🕉️ Divine Console 🕉️</h2>
+        <p>Submit the complete flag here to validate your enlightenment:</p>
+        
+        <div class="console">
+            <div class="console-header">
+                <div class="console-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="console-title">त्रिमूर्ति_Validation_System</span>
+            </div>
+            <div class="console-body">
+                <div class="console-output" id="console-output">
+                    <p>> Welcome to the Divine Console</p>
+                    <p>> Decode the Trimurti's secrets to proceed</p>
+                    <p>> Submit the complete flag for validation...</p>
+                </div>
+                <div class="console-input">
+                    <span>> </span>
+                    <input type="text" id="flag-input" placeholder="Enter the complete flag..." autofocus>
+                    <button onclick="validateFlag()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- About Page -->
+        <div id="about-page" class="page" style="display: none;">
+            <div class="about-content">
+                <h2>About त्रिमूर्ति CTF</h2>
+                <p>This Capture The Flag challenge is inspired by the Hindu trinity of Brahma (the creator), Vishnu (the preserver), and Shiva (the destroyer). Each deity represents a fundamental cosmic function.</p>
+                <p>The challenges are designed to test your cryptography skills while exploring Hindu mythology. To find the flag, you must solve all three challenges in sequence and combine the results.</p>
+                <p>Remember, the flag follows the standard CTF format: <code>Flag{...}</code> where the content between the braces is what you need to discover.</p>
+                <p>Created with ❤️ for CTF enthusiasts and mythology lovers.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>त्रिमूर्ति CTF &copy; 2023</p>
+        <p>Embark on a journey through Hindu mythology and cryptography</p>
+        <div class="social-links">
+            <a href="#">📖</a>
+            <a href="#">📜</a>
+            <a href="#">🕉️</a>
+            <a href="#">🔥</a>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+<div class="modal" id="success-modal">
+    <div class="modal-content success-modal">
+        <div class="celebration">
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+        </div>
+        <h3>🌺 Enlightenment Achieved! 🌺</h3>
+        <p>You have successfully decoded the sacred knowledge of the Trimurti!</p>
+        <p>The divine trinity blesses you with wisdom:</p>
+        <p class="mantra">"ॐ नमः शिवाय नारायणाय ब्रह्मणे"</p>
+        <button class="modal-close" onclick="closeModal()">Accept Blessings</button>
+    </div>
+</div>
+
+<div class="modal" id="failure-modal">
+    <div class="modal-content failure-modal">
+        <div class="asura">
+            <div class="asura-eye"></div>
+            <div class="asura-eye"></div>
+        </div>
+        <h3>👹 Asura's Wrath! 👹</h3>
+        <p>Your flag is incorrect! The demons of ignorance laugh at your attempt.</p>
+        <p>Remember the sacred combination:</p>
+        <p class="hint">Brahma's Creation + Vishnu's Protection + Shiva's Transformation</p>
+        <button class="modal-close" onclick="closeModal()">Try Again</button>
+    </div>
+</div>
+    <div class="modal" id="deity-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <h3 id="modal-title">Deity Name</h3>
+            <p id="modal-role">Role</p>
+            <p id="modal-symbol">Symbol: </p>
+            <p id="modal-description">Description goes here.</p>
+        </div>
+    </div>
+
+    <!-- Jumpscare (hidden) -->
+    <div class="jumpscare" id="jumpscare">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZTUzOTM1IiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMDEuOC0yNjEuN2wtODQuOS02MS43Yy0zLjEtMi4yLTcuMi0yLjItMTAuMyAwbC01NiA0MC43LTE1LjktMTEuNWMtMy4xLTIuMi03LjItMi4yLTEwLjMgMEwxMzEgMjQ3LjhjLTIuOSAyLjEtMy4yIDYuMS0uNyA4LjhsNDMuNSA0My4zYzEuNSAxLjUgMy42IDIuMyA1LjcgMi4zIDEuNyAwIDMuNC0uNSA0LjgtMS40bDE2LjYtMTJjMy4xLTIuMiAzLjctNi4yIDEuNS05LjNsLTE0LjUtMjAuMWMyLjEtMi45IDYuNi0zLjMgOS43LTEuMWwzMi4xIDIzLjMgMTA1LjEtNzYuMmMzLjEtMi4yIDMuNy02LjIgMS41LTkuM2wtMTkuOC0yNy43Yy0yLjItMy4xLTYuMi0zLjctOS4zLTEuNXoiLz48L3N2Zz4=" alt="Jumpscare">
+    </div>
+
+    <!-- Hidden message -->
+    <div class="hidden-message" id="hidden-message">
+        <p id="message-text"></p>
+    </div>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(`${pageId}-page`).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Deity modal
+        function showDeityModal(name, role, symbol, description) {
+            document.getElementById('modal-title').textContent = name;
+            document.getElementById('modal-role').textContent = role;
+            document.getElementById('modal-symbol').textContent = `Symbol: ${symbol}`;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('deity-modal').style.display = 'flex';
+            
+            // Random chance for jumpscare (10% chance)
+            if (Math.random() < 0.1 && name === 'Shiva') {
+                setTimeout(() => {
+                    triggerJumpscare();
+                }, 2000);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('deity-modal').style.display = 'none';
+        }
+
+        // Jumpscare
+        function triggerJumpscare() {
+            const jumpscare = document.getElementById('jumpscare');
+            jumpscare.style.opacity = '1';
+            jumpscare.style.pointerEvents = 'auto';
+            
+            // Play sound if possible
+            try {
+                const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...'); // Short scream sound
+                audio.volume = 0.5;
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            } catch (e) {
+                console.log('Audio error:', e);
+            }
+            
+            setTimeout(() => {
+                jumpscare.style.opacity = '0';
+                jumpscare.style.pointerEvents = 'none';
+            }, 1000);
+        }
+
+        // Hint toggles
+        function toggleHint(number) {
+            const hint = document.getElementById(`hint${number}`);
+            const btn = hint.previousElementSibling;
+            
+            if (hint.style.display === 'block') {
+                hint.style.display = 'none';
+                btn.innerHTML = '💡 Show Hint';
+            } else {
+                hint.style.display = 'block';
+                btn.innerHTML = '🙈 Hide Hint';
+            }
+        }
+
+        // Clue checking
+        const solvedClues = [false, false, false];
+        
+        function checkClue(number) {
+            const input = document.getElementById(`clue${number}-input`).value.trim();
+            let correct = false;
+            let message = '';
+            
+            switch(number) {
+                case 1:
+                    correct = input === "Flag{Brahma_1000_Years}";
+                    message = correct ? "Correct! First part decoded." : "Incorrect. Remember Brahma's knowledge is encoded.";
+                    break;
+                case 2:
+                    correct = input === "_Vishnu_10_Nights";
+                    message = correct ? "Correct! Second part revealed." : "Incorrect. Vishnu's cipher requires shifting.";
+                    break;
+                case 3:
+                    correct = input === "_Nataraj}";
+                    message = correct ? "Correct! Final part deciphered." : "Incorrect. Shiva's transformation needs conversion.";
+                    break;
+            }
+            
+            if (correct) {
+                solvedClues[number-1] = true;
+                showMessage(message, 'success');
+                
+                // Show final flag section if all clues solved
+                if (solvedClues.every(clue => clue)) {
+                    document.getElementById('final-flag-section').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('final-flag-section').scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                }
+            } else {
+                showMessage(message, 'error');
+                document.getElementById(`clue${number}-input`).style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.getElementById(`clue${number}-input`).style.animation = '';
+                }, 500);
+            }
+        }
+        
+        function checkFinalFlag() {
+            const input = document.getElementById('final-flag-input').value.trim();
+            if (input === "Flag{Brahma_1000_Years_Vishnu_10_Nights_Nataraj}") {
+                showMessage("🎉 Congratulations! You've found the complete flag!", 'success');
+                
+                // Celebration animation
+                document.body.style.animation = 'flash 0.3s 3';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 1000);
+            } else {
+                showMessage("Incomplete flag. Combine all three parts in order.", 'error');
+                document.getElementById('final-flag-input').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.getElementById('final-flag-input').style.animation = '';
+                }, 500);
+            }
+        }
+        
+        // Show message
+        function showMessage(text, type) {
+            const messageBox = document.getElementById('hidden-message');
+            const messageText = document.getElementById('message-text');
+            
+            messageText.textContent = text;
+            messageBox.style.backgroundColor = type === 'success' ? 'rgba(76, 175, 80, 0.2)' : 'rgba(229, 57, 53, 0.2)';
+            messageBox.style.borderColor = type === 'success' ? 'var(--deva)' : 'var(--asura)';
+            
+            messageBox.classList.add('show');
+            
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
+        }
+
+        // Easter egg - secret key sequence
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                
+                if (konamiIndex === konamiCode.length) {
+                    // Konami code completed
+                    triggerJumpscare();
+                    showMessage("🕉️ You've awakened the divine power! But be careful...", 'success');
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Initialize - show home page
+        showPage('home');
+// Add to your existing nav links
+    document.querySelector('.nav-links').innerHTML += '<a href="#" onclick="showPage(\'console\')">💻 Console</a>';
+
+    // Console functionality
+    function validateFlag() {
+        const input = document.getElementById('flag-input').value.trim();
+        const output = document.getElementById('console-output');
+        const correctFlag = "Flag{Brahma_1000_Years_Vishnu_10_Nights_Nataraj}";
+        
+        output.innerHTML += `<p>> Validating: ${input}</p>`;
+        output.scrollTop = output.scrollHeight;
+        
+        if (input === correctFlag) {
+            setTimeout(() => {
+                output.innerHTML += `<p class="success">> Validation successful! Opening divine gateway...</p>`;
+                output.scrollTop = output.scrollHeight;
+                showSuccessModal();
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                output.innerHTML += `<p class="error">> ERROR: Invalid flag detected!</p>`;
+                output.scrollTop = output.scrollHeight;
+                showFailureModal();
+            }, 1000);
+        }
+    }
+
+    function showSuccessModal() {
+        // Set random positions for fireworks
+        document.querySelectorAll('.firework').forEach(fw => {
+            fw.style.setProperty('--tx', `${Math.random() * 100 - 50}px`);
+            fw.style.setProperty('--ty', `${Math.random() * 100 - 50}px`);
+        });
+        
+        document.getElementById('success-modal').style.display = 'flex';
+        
+        // Play success sound if possible
+        try {
+            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log('Audio play failed:', e));
+        } catch (e) {
+            console.log('Audio error:', e);
+        }
+    }
+
+    function showFailureModal() {
+        document.getElementById('failure-modal').style.display = 'flex';
+        
+        // Play failure sound if possible
+        try {
+            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log('Audio play failed:', e));
+        } catch (e) {
+            console.log('Audio error:', e);
+        }
+    }
+
+    // Close any modal
+    function closeModal() {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Make console input respond to Enter key
+    document.getElementById('flag-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            validateFlag();
+        }
+    });
+    </script>
+</body>
+</html>
