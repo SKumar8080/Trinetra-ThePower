@@ -1,7 +1,7 @@
 # <div align="center">🕉️ त्रिमूर्ति CTF Challenge 🕉️</div>
 
 <div align="center">
-  <img src="https://i.gifer.com/8ldK.gif" width="150" alt="Om Animation">
+  <img src="https://i.gifer.com/7VE.gif" width="150" alt="Om Animation">
 </div>
 
 **<div align="center">"ज्ञानं परमं बलम्"** *(Knowledge is the ultimate power)*</div>
@@ -49,7 +49,24 @@ Embark on a divine journey through Hindu mythology to uncover hidden secrets! Th
    - Face divine wrath for failure <span style="color: #e53935;">(beware of Asuras!)</span> <img src="https://i.gifer.com/embedded/download/3og0.gif" width="20" style="vertical-align: middle;">
 </div>
 
-
+## 🌌 Features
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0;">
+  <div style="background: rgba(255,107,0,0.1); padding: 1rem; border-radius: 8px; border: 1px solid #ff6b00; width: 200px; text-align: center; animation: flicker 3s infinite;">
+    <img src="https://i.gifer.com/7VE.gif" width="80"><br>
+    <strong>Mythological Animations</strong><br>
+    <small>Brahma's Creation</small>
+  </div>
+  <div style="background: rgba(76,175,80,0.1); padding: 1rem; border-radius: 8px; border: 1px solid #4caf50; width: 200px; text-align: center; animation: flicker 3s infinite; animation-delay: 0.5s;">
+    <img src="https://i.gifer.com/W7lt.gif" width="80"><br>
+    <strong>Interactive Console</strong><br>
+    <small>Vishnu's Protection</small>
+  </div>
+  <div style="background: rgba(156,39,176,0.1); padding: 1rem; border-radius: 8px; border: 1px solid #9c27b0; width: 200px; text-align: center; animation: flicker 3s infinite; animation-delay: 1s;">
+    <img src="https://i.gifer.com/3z6Z.gif" width="80"><br>
+    <strong>Hidden Secrets</strong><br>
+    <small>Shiva's Transformation</small>
+  </div>
+</div>
 
 ## 🧘 Motivational Shlokas
 <div style="background: #0f0f0f; padding: 2rem; border-radius: 8px; color: white; border: 1px solid #ff6b00; position: relative; overflow: hidden;">
@@ -66,12 +83,41 @@ Embark on a divine journey through Hindu mythology to uncover hidden secrets! Th
 </div>
 
 ## 🛠️ Setup
-
+```bash
 # Start the divine server
 python3 -m http.server 8000
 
 # Open in your preferred browser
 xdg-open http://localhost:8000
+```
 
 ## 🙏 Credits
-<div style="text-align: center; margin: 2rem 0; position: relative;"> <div style="width: 100px; height: 100px; margin: 0 auto; border-radius: 50%; background: conic-gradient(#ff6b00, #9c27b0, #4caf50, #ff6b00); animation: spin 10s linear infinite; display: flex; align-items: center; justify-content: center;"> <div style="width: 90px; height: 90px; background: #121212; border-radius: 50%; display: flex; align-items: center; justify-content: center;"> <span style="font-size: 2rem;">🕉️</span> </div> </div> <p style="margin-top: 1rem;"><em>"सत्यमेव जयते"</em> (Truth alone triumphs)</p> </div><style> @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } </style><div align="center"> <a href="#-trimurti-ctf-challenge-"> <img src="https://img.shields.io/badge/Powered_By-Trimurti-orange?style=for-the-badge&logo=html5" alt="Trimurti Badge"> </a> </div><!-- Hidden Blessing (visible when selected) --><div style="color: transparent; user-select: text; margin-top: 2rem; text-align: center; font-family: 'Times New Roman', serif;"> 🕉️ अखण्डमण्डलाकारं व्याप्तं येन चराचरम्।<br> तत्पदं दर्शितं येन तस्मै श्रीगुरवे नमः॥ 🕉️ </div> ```
+<div style="text-align: center; margin: 2rem 0; position: relative;">
+  <div style="width: 100px; height: 100px; margin: 0 auto; border-radius: 50%; background: conic-gradient(#ff6b00, #9c27b0, #4caf50, #ff6b00); animation: spin 10s linear infinite; display: flex; align-items: center; justify-content: center;">
+    <div style="width: 90px; height: 90px; background: #121212; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 2rem;">🕉️</span>
+    </div>
+  </div>
+  <p style="margin-top: 1rem;"><em>"सत्यमेव जयते"</em> (Truth alone triumphs)</p>
+</div>
+
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<div align="center">
+  <a href="#-trimurti-ctf-challenge-">
+    <img src="https://img.shields.io/badge/Powered_By-Trimurti-orange?style=for-the-badge&logo=html5" alt="Trimurti Badge">
+  </a>
+</div>
+
+<!-- Hidden Blessing (visible when selected) -->
+<div style="color: transparent; user-select: text; margin-top: 2rem; text-align: center; font-family: 'Times New Roman', serif;">
+  🕉️ अखण्डमण्डलाकारं व्याप्तं येन चराचरम्।<br>
+  तत्पदं दर्शितं येन तस्मै श्रीगुरवे नमः॥ 🕉️
+</div>
+```
+
