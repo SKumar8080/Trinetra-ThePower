@@ -66,9 +66,12 @@ Embark on a divine journey through Hindu mythology to uncover hidden secrets! Th
 </div>
 
 ## 🛠️ Setup
-```bash
+
 # Start the divine server
 python3 -m http.server 8000
 
 # Open in your preferred browser
 xdg-open http://localhost:8000
+
+## 🙏 Credits
+<div style="text-align: center; margin: 2rem 0; position: relative;"> <div style="width: 100px; height: 100px; margin: 0 auto; border-radius: 50%; background: conic-gradient(#ff6b00, #9c27b0, #4caf50, #ff6b00); animation: spin 10s linear infinite; display: flex; align-items: center; justify-content: center;"> <div style="width: 90px; height: 90px; background: #121212; border-radius: 50%; display: flex; align-items: center; justify-content: center;"> <span style="font-size: 2rem;">🕉️</span> </div> </div> <p style="margin-top: 1rem;"><em>"सत्यमेव जयते"</em> (Truth alone triumphs)</p> </div><style> @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } </style><div align="center"> <a href="#-trimurti-ctf-challenge-"> <img src="https://img.shields.io/badge/Powered_By-Trimurti-orange?style=for-the-badge&logo=html5" alt="Trimurti Badge"> </a> </div><!-- Hidden Blessing (visible when selected) --><div style="color: transparent; user-select: text; margin-top: 2rem; text-align: center; font-family: 'Times New Roman', serif;"> 🕉️ अखण्डमण्डलाकारं व्याप्तं येन चराचरम्।<br> तत्पदं दर्शितं येन तस्मै श्रीगुरवे नमः॥ 🕉️ </div> ```
