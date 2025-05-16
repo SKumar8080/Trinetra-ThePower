@@ -1,7 +1,7 @@
 # <div align="center">🕉️ त्रिमूर्ति CTF Challenge 🕉️</div>
 
 <div align="center">
-  <img src="https://i.gifer.com/7VE.gif" width="150" alt="Om Animation">
+  <img src="https://i.gifer.com/8ldK.gif" width="150" alt="Om Animation">
 </div>
 
 **<div align="center">"ज्ञानं परमं बलम्"** *(Knowledge is the ultimate power)*</div>
